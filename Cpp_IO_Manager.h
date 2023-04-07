@@ -5,7 +5,7 @@
 using namespace std;
 class IO_manager{
     private:
-    string openMessage = R"(
+    string openMessage = R"EOF(
           _____                    _____                    _____                    _____                    _____                    _____                    _____                    _____                    _____                                   
          /\    \                  /\    \                  /\    \                  /\    \                  /\    \                  /\    \                  /\    \                  /\    \                  /\    \                 ______           
         /::\____\                /::\    \                /::\____\                /::\    \                /::\    \                /::\    \                /::\____\                /::\    \                /::\    \               |::|   |          
@@ -72,7 +72,7 @@ class IO_manager{
         \::/    /                 ~~                                                      \::/    /        \::/    /                \::/____/                \:|   |                  \::/    /                \:|   |                                    
          \/____/                                                                           \/____/          \/____/                  ~~                       \|___|                   \/____/                  \|___|                                    
                                                                                                                                                                                                                                                           
-)";
+)EOF";
     fstream f;
     string title;
     string subheader;
@@ -117,11 +117,13 @@ class IO_manager{
         shouldPredict = false;
     }
     IO_manager(string inHeader, string inFileName){
-
+        title = inHeader;
+        fileName = inFileName;
+        useProgressBar = false;
+        shouldPredict = false;
     }
     //----------------------------------------------------------------
     //auto functions
-
 
     //----------------------------------------------------------------
     //progress bar functions, with many for different manual implementations, and one for the auto implementation
@@ -137,4 +139,23 @@ class IO_manager{
         system("CLS");
         cout << "--------------------------------" << openMessage << "--------------------------------" << "\n\n\n\n";
     }
+    //----------------------------------------------------------------
+    //functions for changing the variables
+    void changeHeader(string inHeader){
+        title = inHeader;
+    }
+    void changeSubheader(string inSubheader){
+    subheader = inSubheader;
+    }
+    void changeFileName(string inFileName){
+        fileName = inFileName;
+    }
+    void changeProgressBar(bool inProgressBar){
+        useProgressBar = inProgressBar;
+    }
+    void changePredict(bool inPredict){
+        shouldPredict = inPredict;
+    }
+    //----------------------------------------------------------------
+    //raw functions for outputs
 };
